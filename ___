@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <title>Angular JS | Part </title>
+      <script src="angular/angular.min.js"></script>
+   </head>
+   <body  ng-app="mainApp">
+     <!-- Content Here -->
+     <div ng-controller="app">
+
+     </div>
+     <!-- End Content -->
+     <script>
+
+     var app = angular.module("mainApp",[]);
+
+     app.controller("app",function($scope){
+
+     });
+
+     </script>
+   </body>
+</html>

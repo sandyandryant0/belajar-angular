@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <title>Angular JS | Part 11</title>
+      <script src="angular/angular.min.js"></script>
+      <script src="angular/angular-route.min.js"></script>
+   </head>
+   <body  ng-app="mainApp">
+     <!-- Content Here -->
+     <div ng-view></div>
+     <!-- End Content -->
+     <script>
+
+      var app = angular.module("mainApp",["ngRoute"]);
+      app.config(function($routeProvider){
+         $routeProvider
+         .when("/",{
+            templateUrl : "login.html"
+         })
+         .when("/dashboard",{
+            templateUrl : "dashboard.html"
+         })
+         .otherwise({
+            redirectTo : "/"
+         })
+      });
+
+      app.controller("loginController",function($scope,$location){
+          $scope.submit = function(){
+             var username  = $scope.username;
+             var password = $scope.password;
+             if(username=="admin" && password == "admin"){
+                 $location.path("/dashboard");
+             }else{
+                alert("Username or Password are wrong , please try again !!");
+             }
+          }
+      });
+
+     </script>
+   </body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <title>Angular JS | Part 18</title>
+      <script src="angular/angular.min.js"></script>
+   </head>
+   <body  ng-app="mainApp">
+     <!-- Content Here -->
+
+     <div ng-controller="app">
+        <input type="text" ng-model="myText"/><br>
+        <p>You updated textbox: {{ counter }} times</p>
+     </div>
+
+
+     <!-- End Content -->
+     <script>
+
+     var app = angular.module("mainApp",[]);
+
+     app.controller("app",function($scope){
+          $scope.counter = -1;
+          $scope.$watch("myText",function(newValue,oldValue){
+              $scope.counter++;
+              if($scope.counter==100){
+                 alert("Hello World");
+              }
+          });
+     });
+
+
+     </script>
+   </body>
+</html>

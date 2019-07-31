@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <title>Angular JS | Part 12</title>
+      <script src="angular/angular.min.js"></script>
+      <script src="angular/angular-route.min.js"></script>
+   </head>
+   <body  ng-app="mainApp">
+     <!-- Content Here -->
+     <div ng-view></div>
+     <!-- End Content -->
+     <script>
+
+      var app = angular.module("mainApp",["ngRoute"]);
+      app.config(function($routeProvider){
+         $routeProvider
+         .when("/",{
+            templateUrl : "login.html"
+         })
+         .when("/dashboard",{
+           resolve:{
+              "check":function($location,$rootScope){
+                  if(!$rootScope.loggedIn){
+                     $location.path("/");
+                  }
+              }
+           },
+           templateUrl : "dashboard.html"
+         })
+         .otherwise({
+            redirectTo : "/"
+         })
+      });
+
+      app.controller("loginController",function($scope,$location,$rootScope){
+          $scope.submit = function(){
+            if($scope.username == "admin" && $scope.password == "admin"){
+               $rootScope.loggedIn = true;
+               $location.path("/dashboard");
+            }else{
+               alert("Wrong Stuff");
+            }
+          }
+      });
+
+     </script>
+   </body>
+</html>

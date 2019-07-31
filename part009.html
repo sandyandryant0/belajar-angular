@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <title>Angular JS | Part 9</title>
+      <script src="angular/angular.min.js"></script>
+      <script src="angular/angular-route.min.js"></script>
+   </head>
+   <body  ng-app="mainApp">
+     <!-- Content Here -->
+     <div ng-view></div>
+     <!-- End Content -->
+     <script>
+
+      var app = angular.module("mainApp",["ngRoute"]);
+      app.config(function($routeProvider){
+         $routeProvider
+         .when("/",{
+            template : "Welcome user"
+         })
+         .when("/anotherPage",{
+            template : "Welcome user, again"
+         })
+         .otherwise({
+            redirectTo : "/"
+         })
+      });
+
+     </script>
+   </body>
+</html>

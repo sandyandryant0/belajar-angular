@@ -1,0 +1,13 @@
+<!DOCTYPE HTML>
+<html lang="en" ng-app="">
+   <head>
+      <meta charset="utf-8">
+      <title>Angular JS | Part 1</title>
+      <script src="angular/angular.min.js"></script>
+   </head>
+   <body>
+     <!-- Content Here -->
+
+     <!-- End Content -->
+   </body>
+</html>

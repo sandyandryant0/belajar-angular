@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <title>Angular JS | Part 31</title>
+      <script src="angular/angular.min.js"></script>
+      <script src="angular/angular-animate.min.js"></script>
+      <style>
+          .animate.ng-enter, .animate.ng-leave{
+             transition: 500ms linear all;
+          }
+          .animate.ng-leave.ng-leave-active{
+             opacity: 0;
+          }
+          .animate.ng-enter.ng-enter-active{
+             opacity: 1;
+          }
+      </style>
+   </head>
+   <body  ng-app="mainApp">
+     <!-- Content Here -->
+     <div ng-controller="app">
+        <p>Search: <input type="text" ng-model="searchBox"/><p>
+          <ul>
+             <li class="animate" ng-repeat="food in foods | filter: searchBox">
+                {{food}}
+             </li>
+          </ul>
+     </div>
+     <!-- End Content -->
+     <script>
+
+     var app = angular.module("mainApp",["ngAnimate"]);
+
+     app.controller("app",function($scope){
+        $scope.foods = [
+           "Burger",
+           "Pizza",
+           "Extra chhesey pizza",
+           "Potato Chips"
+        ]
+     });
+
+     </script>
+   </body>
+</html>

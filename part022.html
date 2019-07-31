@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <title>Angular JS | Part 22</title>
+      <script src="angular/angular.min.js"></script>
+   </head>
+   <body  ng-app="mainApp">
+     <!-- Content Here -->
+     <div ng-controller="app">
+        <h2>{{ greetMessage }}</h2>
+     </div>
+     <!-- End Content -->
+     <script>
+
+       var app = angular.module("mainApp",[]);
+
+       app.provider("date",function(){
+            return {
+                $get: function(){
+                    return {
+                        showDate: function(){
+                            var date = new Date();
+                            return date.getHours();
+                        }
+                    }
+                }
+            }
+       });
+
+       app.controller("app",function($scope,date){
+           $scope.greetMessage = date.showDate();
+       });
+
+     </script>
+   </body>
+</html>

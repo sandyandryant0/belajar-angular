@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <title>Angular JS | Part 27</title>
+      <script src="angular/angular.min.js"></script>
+   </head>
+   <body  ng-app="mainApp">
+     <!-- Content Here -->
+     <div ng-controller="app">
+        <div class="" my-first-script></div>
+     </div>
+     <!-- End Content -->
+     <script>
+
+     var app = angular.module("mainApp",[]);
+
+     app.directive("myFirstScript",function(){
+        return {
+           template: "Hello World !"
+        }
+     });
+
+     app.controller("app",function($scope){
+
+     });
+
+     </script>
+   </body>
+</html>

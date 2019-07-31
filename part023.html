@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <title>Angular JS | Part 23</title>
+      <script src="angular/angular.min.js"></script>
+   </head>
+   <body  ng-app="mainApp">
+     <!-- Content Here -->
+     <div ng-controller="app">
+        <h2>{{ greetMessage }}</h2>
+     </div>
+     <!-- End Content -->
+     <script>
+
+       var app = angular.module("mainApp",[]);
+
+       app.service("fromService",function(){
+           this.message = "This is from service !";
+       });
+
+       app.factory("fromFactory",function(){
+           var factory = {};
+           factory.message = "This is from factory !";
+           return factory;
+       });
+
+       app.provider("fromProvider",function(){
+            var value  = "This is from provider ";
+            return {
+               setName: function(name){
+                  value += name+" ";
+               },
+               $get: function(){
+                   return {
+                      message: value
+                   }
+               }
+            }
+       });
+
+       app.config(function(fromProviderProvider){
+          fromProviderProvider.setName("Hello Bro !!");
+       });
+
+       app.controller("app",function($scope ,fromService ,fromFactory, fromProvider){
+            $scope.greetMessage = [fromService.message, fromFactory.message, fromProvider.message];
+       });
+
+     </script>
+   </body>
+</html>

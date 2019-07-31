@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <title>Angular JS | Part 17</title>
+      <script src="angular/angular.min.js"></script>
+   </head>
+   <body  ng-app="mainApp">
+     <!-- Content Here -->
+
+     <div ng-controller="app">
+        <li ng-repeat="i in range track by $index">
+            Hello World
+        </li>
+     </div>
+
+     <!-- End Content -->
+     <script>
+
+     var app = angular.module("mainApp",[]);
+
+     app.controller("app",function($scope){
+        var range = new Array(100);
+        $scope.range = range;
+     });
+
+     </script>
+   </body>
+</html>

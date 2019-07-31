@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html lang="en" ng-app="">
+   <head>
+      <meta charset="utf-8">
+      <title>Angular JS | Part 5</title>
+      <script src="angular/angular.min.js"></script>
+   </head>
+   <body>
+
+     <div ng-init="myFavLan=[
+         { name : 'PHP', extenstion : '.php' },
+         { name : 'JavaScript', extenstion : '.js' },
+         { name : 'CSS', extenstion : '.css' },
+         { name : 'HTML', extenstion : '.html' },
+         { name : 'C++', extenstion : '.cpp' },
+         { name : 'C#', extenstion : '.cs' },
+         { name : 'Java', extenstion : '.java' },
+         { name : 'Ruby', extenstion : '.rb' },
+         { name : 'Python', extenstion : '.py' }
+      ]">
+
+       <p ng-repeat="language in myFavLan">
+          Name : {{ language.name }}<br>
+          Extension : {{ language.extenstion }}<br>
+       </p>
+
+     </div>
+
+   </body>
+</html>

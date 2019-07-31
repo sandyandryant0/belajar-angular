@@ -1,0 +1,95 @@
+<!DOCTYPE HTML>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <title>Angular JS | Part 25</title>
+      <script src="angular/angular.min.js"></script>
+      <style type="text/css">
+          h1{
+             text-align: center;
+          }
+          input[type=text]{
+              display: block;
+              margin: 0 auto;
+              padding: 5px;
+              font-size: 15px;
+              width: 320px;
+          }
+          span.done-true{
+             color: grey;
+             font-style: italic;
+             text-decoration: line-through;
+          }
+          span[contenteditable="true"]{
+             background: grey;
+             padding: 5px;
+             color: #fff;
+          }
+      </style>
+   </head>
+   <body  ng-app="mainApp">
+     <!-- Content Here -->
+     <div ng-controller="app">
+          <h1>Add A Task</h1>
+          <input type="text" ng-model="task" ng-keyup="searchEnter()" />
+          <div id="tasksShow">
+              <ul>
+                  <li ng-repeat="oneTask in tasks track by $index">
+                     <input type="checkbox" ng-model="oneTask.status"/> &nbsp
+                     <span contenteditable="false" ng-dblclick="contentEdit()" ng-keyup="enterAgain(oneTask.taskMessage)" ng-model="oneTask.taskMessage" class="done-{{ oneTask.status }}">
+                        {{ oneTask.taskMessage  }}
+                     </span>
+                  </li>
+              </ul>
+          </div>
+     </div>
+     <!-- End Content -->
+     <script>
+
+     var app = angular.module("mainApp",[]);
+
+     app.controller("app",function($scope){
+        $scope.tasks = [];
+        var taskData = localStorage["taskList"];
+
+        if(taskData !== undefined){
+           $scope.tasks = JSON.parse(taskData);
+        }
+
+        $scope.searchEnter = function(){
+            if(event.which == 13 && $scope.task != ""){
+              $scope.addTask();
+            }
+        }
+        $scope.addTask = function(){
+            $scope.tasks.push({
+              "taskMessage":$scope.task,
+              "status":false
+            });
+            $scope.task = "";
+            localStorage["taskList"] = JSON.stringify($scope.tasks);
+        }
+        $scope.contentEdit = function(msg){
+          for(i=0; i< $scope.tasks.length;i++){
+             if($scope.tasks[i].taskMessage == msg){
+                $scope.tasks[i].taskMessage = event.target.innerText;
+             }
+          }
+          localStorage["taskList"] = JSON.stringify($scope.tasks);
+          event.target.contentEditable = event.target.contentEditable == "false" ? "true" :  "false";
+        }
+
+        $scope.enterAgain = function(msg){
+           if(event.which == 13 && msg != ""){
+              $scope.contentEdit(msg);
+           }
+        }
+
+
+
+
+     });
+
+     </script>
+   </body>
+</html>

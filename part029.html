@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <title>Angular JS | Part 29</title>
+      <script src="angular/angular.min.js"></script>
+   </head>
+   <body  ng-app="mainApp">
+     <!-- Content Here -->
+     <div ng-controller="app">
+         <div my-first-script></div>
+     </div>
+     <!-- End Content -->
+     <script>
+
+     var app = angular.module("mainApp",[]);
+
+     app.directive("myFirstScript",function(){
+          function linkFunction($scope,elem,attrs){
+             $scope.name = "Hello World";
+             $scope.changeName = function(newName){
+                $scope.name = newName;
+             }
+          }
+          return {
+             restrict: 'EA',
+             link: linkFunction,
+             template: '<span ng-click="changeName(\'hey there\')" >Current Text: {{name}}</span>'
+          }
+     });
+
+     app.controller("app",function($scope){
+
+     });
+
+     </script>
+   </body>
+</html>

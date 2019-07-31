@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <title>Angular JS | Part 30</title>
+      <script src="angular/angular.min.js"></script>
+   </head>
+   <body  ng-app="mainApp">
+     <!-- Content Here -->
+     <div ng-controller="app">
+         <p>First variable 'name' : {{name}}</p>
+         <p>Second variable 'age' : {{age}}</p>
+         <input type="button" value="From Controller" ng-click="alertTheName()"/>
+         <p>--------------DIRECTIVE--------------------</p>
+         <div my-first-script name="{{name}}" age="age" func="alertTheName()"></div>
+     </div>
+     <!-- End Content -->
+     <script>
+
+     var app = angular.module("mainApp",[]);
+
+     app.directive("myFirstScript",function(){
+          return {
+             restrict: 'EA',
+             scope: {
+               name: "@",
+               age:"=",
+               func:"&"
+             },
+             template: [
+               "<p>Value of name in directive: {{name}}</p>",
+               "<p>Enter new name 'name' : <input type='text' ng-model='name  '/> </p>",
+               "<p>Value of age in directive: {{age}}</p>",
+               "<p>Enter a age : <input type='text' ng-model='age'/> </p>",
+               "<p><input type='button' value='Alert from directive' ng-click='func()'/></p>"
+             ].join("")
+          }
+     });
+
+     app.controller("app",function($scope){
+        $scope.name = "codedamn";
+        $scope.age = 100;
+        $scope.alertTheName = function(){
+           alert($scope.name)
+        }
+     });
+
+     </script>
+   </body>
+</html>
